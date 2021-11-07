@@ -19,6 +19,11 @@ router.get('/', (req, res) => {
       }
     ]
   })
+  .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // get one product
@@ -40,6 +45,17 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
+  .then(dbPostData => {
+    if (!dbPostData) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+    res.json(dbPostData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 // create new product
@@ -123,6 +139,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
+  .then(dbUserData => {
+    if (!dbUserData) {
+      res.status(404).json({ message: 'No product found with this id' });
+      return;
+    }
+    res.json(dbUserData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
