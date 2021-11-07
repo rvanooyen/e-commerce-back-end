@@ -10,4 +10,4 @@
 - https://github.com/rvanooyen/e-commerce-back-end.git
 
 - Walkthrough Video:
-- 
+- shown in submission page.
